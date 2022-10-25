@@ -1,0 +1,181 @@
+<html>
+<head>
+	<script type="text/javascript" src="./Component.js?v6"></script>
+	<style type="text/css">
+		*{
+			font-family: "Poppins",helvetica,sans-serif;
+		}
+		product-name-label,product-price-label{
+
+			font-weight: bold;
+			
+		}
+		product-price{
+
+			color: green;
+			padding: 20px;
+		}
+		.product{
+			color: red;
+			display: block;
+			/*margin: 20px;*/
+			padding: 20px;
+			
+		}
+		code{
+			display: block;
+			background: #2e0c5a;
+			color: white;
+			padding: 20px;
+			margin: 10px 0px;
+			font-family: consolas;
+		}
+		tag{
+			color: skyblue;
+			font-weight: bold;
+		}
+		attr{
+			color: lightgreen;
+			font-weight: bold;
+			/*letter-spacing: 1px;*/
+		}
+		keyword{
+			color: orange;
+			font-weight: bold;
+		}
+		comment{
+			color: grey;
+		}
+		pre{
+			line-height: 20px;
+		}
+	</style>
+</head>	
+<body>
+	<div>
+		<div>
+			<h1>Documentation</h1>
+		</div>
+		<div>
+			<h3>Download Component.js and place it to the root folder. Link Component.js in your html</h3>
+			<div>
+				<code>
+					&lt;<tag>script</tag> type="<attr>text/javascript</attr>" src="<attr>./Component.js</attr>"&gt;&lt;/<tag>script</tag>&gt;
+				</code>
+			</div>
+		</div>	
+		<div>
+			<h3>Html Structure</h3>
+			<div>
+				<code>
+					&lt;<tag>div</tag> class="<attr>root</attr>"&gt;&lt;/<tag>div</tag>&gt;
+				</code>
+			</div>
+		</div>
+		<div>
+			<h3>Script to add specific component</h3>
+			<div>
+				<code>
+<pre>
+&lt;<tag>script</tag> typ="<attr>text/javascript</attr>"&gt;
+	
+	<comment>/* Component HTML */</comment>
+	<keyword>let</keyword> product_html = <keyword>function</keyword>(){
+ 		<keyword>return</keyword> `
+		<attr>&lt;div&gt;
+			&lt;product-name-label&gt;Product Name:&lt;/product-name-label&gt;
+			&lt;product-name&gt;Green T-shirt&lt;/product-name&gt;
+		&lt;/div&gt;
+		&lt;div&gt;
+			&lt;product-price-label&gt;Product Price:&lt;/product-price-label&gt;
+			&lt;product-price&gt;260/-&lt;/product-price&gt;
+		&lt;/div&gt;</attr>
+		`;
+	}
+
+	<keyword>let</keyword> product = <keyword>new</keyword> <tag>Component</tag>(document.<tag>querySelector</tag>("<attr>.root</attr>"),product_html,"<attr>product</attr>");
+	product.<tag>add()</tag>;
+
+&lt;/<tag>script</tag>&gt;
+</pre>
+				</code>
+			</div>
+			<h3>Output:</h3>
+			<img src="./example-001.png">
+		</div>
+		asd
+		<br>
+		&emsp;asd
+	</div>
+	<div class="root"></div>
+	<button class="product-add-btn">Add</button>
+
+	<script type="text/javascript">
+		
+		let product_name;
+		let product_price;
+
+		let product_html = function(){
+
+			return `
+				<div>
+					<product-name-label>Product Name:</product-name-label>
+					<product-name>Green T-shirt</product-name>
+				</div>
+				<div>
+					<product-price-label>Product Price:</product-price-label>
+					<product-price>260/-</product-price>
+				</div>
+			`;
+			/*
+			return `
+				<div>
+					<product-name-label>Product Name:</product-name-label>
+					<product-name>${this.elementHistory.items[this.id].properties.product_name}</product-name>
+				</div>
+				<div>
+					<product-price-label>Product Price:</product-price-label>
+					<product-price>${this.elementHistory.items[this.id].properties.product_price}</product-price>
+				</div>
+				<button product-index=${this.id} class="product-remove-btn">Remove</button>
+			`*/
+		}
+
+		let product = new Component(document.querySelector(".root"),product_html,"product");
+		product.addClassToChild("product");
+
+		product.addEventListenerForThis = function(element){
+
+			//this.addRemoveBtn(element,"product-remove-btn","product-index");
+		}
+
+		product.add();
+		for(let i=0;i<5;i++){
+
+			// product.addProperties({
+			// 	"product_name":"Product "+i,
+			// 	"product_price":(i+1)*3*23
+			// });
+			// product.add();
+
+
+			// let div = document.createElement("div");
+			// div.appendChild(product.addElement("product-name-label",div,"Product Name:",false,"product-name-label"));
+			// product.root.appendChild(div);
+			
+		}
+
+		document.querySelector(".product-add-btn").addEventListener("click",function(event){
+
+			// product_name = prompt("Product Name");
+			// product_price = prompt("Product Price");
+			product.addProperties({
+				"product_name":"Product "+product.counter,
+				"product_price":(product.counter+1)*3*23
+			});
+			product.add();
+		})
+		// let product = new Component();
+	</script>
+</body>
+</html>
