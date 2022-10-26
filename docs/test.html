@@ -1,0 +1,35 @@
+<html>
+<head>
+	<script type="text/javascript" src="./CComponent.js?v6"></script>
+</head>	
+<body>
+<div class="root"></div>
+<button class="btn-add-item">+ Add Item</button>
+<script type="text/javascript">
+
+	/* Component HTML */
+	let item_html = function(){
+ 		return `
+		<div>
+			<item-name-label>Item:</item-name-label>
+			<item-name> Item_${this.id}</item-name>
+		</div>
+		<button item-index=${this.id} class="item-remove-btn">- Delete</button>
+		`;
+	}
+
+	let item = new CComponent(document.querySelector(".root"),item_html,"item");
+	
+	item.addEventListenerForThis = function(element){
+
+		this.addRemoveBtn(element,"item-remove-btn","item-index");
+	}
+	
+	document.querySelector(".btn-add-item").addEventListener("click",function(event){
+		item.add();		
+	})
+	item.add();
+
+</script>
+</body>
+</html>

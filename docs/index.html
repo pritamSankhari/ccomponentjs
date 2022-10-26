@@ -1,0 +1,216 @@
+<html>
+<head>
+	<script type="text/javascript" src="./CComponent.js?v6"></script>
+	<meta name="description" content="CComponent is Js library which help us to create html as component">
+	<style type="text/css">
+
+		*{
+			font-family: "Poppins",helvetica,sans-serif;
+		}
+		product-name-label,product-price-label{
+
+			font-weight: bold;
+			
+		}
+		product-price{
+
+			color: green;
+			padding: 20px;
+		}
+		.product{
+			color: red;
+			display: block;
+			/*margin: 20px;*/
+			padding: 20px;
+			
+		}
+		code{
+			display: block;
+			background: #2e0c5a;
+			color: white;
+			padding: 20px;
+			margin: 10px 0px;
+			font-family: consolas;
+		}
+		tag{
+			color: skyblue;
+			font-weight: bold;
+		}
+		attr{
+			color: lightgreen;
+			font-weight: bold;
+			/*letter-spacing: 1px;*/
+		}
+		keyword{
+			color: orange;
+			font-weight: bold;
+		}
+		comment{
+			color: grey;
+		}
+		pre{
+			line-height: 20px;
+		}
+		.underlined{
+			text-decoration: underline 5px;
+
+		}
+		.important{
+			font-family: tahoma;
+			font-weight: bold;
+			color: red;
+		}
+		.note{
+			font-family: tahoma;
+			font-weight: bold;
+		}
+		.note-method{
+			color: darkblue;
+		}
+		.note-str{
+			color: darkgreen;
+		}
+	</style>
+	<title>CComponent Js</title>
+</head>	
+<body>
+	<div>
+		<div>
+			<h1><span style="color:slateblue;">CComponent Js </span>| Documentation</h1>
+		</div>
+
+		<!-- Example -->
+		<div>
+			<h3>Download Component.js and place it to the root folder. Link Component.js in your html</h3>
+			<div>
+				<code>
+					&lt;<tag>script</tag> type="<attr>text/javascript</attr>" src="<attr>./CComponent.js</attr>"&gt;&lt;/<tag>script</tag>&gt;
+				</code>
+			</div>
+		</div>	
+
+		<!-- Example -->
+		<div>
+			<h3>Html Structure</h3>
+			<div>
+				<code>
+					&lt;<tag>div</tag> class="<attr>root</attr>"&gt;&lt;/<tag>div</tag>&gt;
+				</code>
+			</div>
+		</div>
+
+		<!-- Example -->
+		<div>
+			<h3>Script to add specific component</h3>
+			<div>
+				<code>
+<pre>
+&lt;<tag>script</tag> type="<attr>text/javascript</attr>"&gt;
+	
+	<comment>/* Component HTML */</comment>
+	<keyword>let</keyword> product_html = <keyword>function</keyword>(){
+ 		<keyword>return</keyword> `
+		<attr>&lt;div&gt;
+			&lt;product-name-label&gt;Product Name:&lt;/product-name-label&gt;
+			&lt;product-name&gt;Green T-shirt&lt;/product-name&gt;
+		&lt;/div&gt;
+		&lt;div&gt;
+			&lt;product-price-label&gt;Product Price:&lt;/product-price-label&gt;
+			&lt;product-price&gt;260/-&lt;/product-price&gt;
+		&lt;/div&gt;</attr>
+		`;
+	}
+
+	<keyword>let</keyword> product = <keyword>new</keyword> <tag>CComponent</tag>(document.<tag>querySelector</tag>("<attr>.root</attr>"),product_html,"<attr>product</attr>");
+	product.<tag>add()</tag>;
+
+&lt;/<tag>script</tag>&gt;
+</pre>
+
+				</code>
+			</div>
+			<h3>Output:</h3>
+			<img src="assets/example-001.png">
+		</div>
+
+		<!-- Example -->
+		<div>	
+			<h3>Script to add item</h3>
+			<div>
+				<code>
+<pre>
+&lt;<tag>div</tag> class="<attr>root</attr>"&gt;&lt;/<tag>div</tag>&gt;
+&lt;<tag>button</tag> class="<attr>btn-add-item</attr>"&gt;+ Add Item&lt;/<tag>button</tag>&gt;
+&lt;<tag>script</tag> type="<attr>text/javascript</attr>"&gt;
+
+	<comment>/* Component HTML */</comment>
+	<keyword>let</keyword> item_html = <keyword>function</keyword>(){
+ 		<keyword>return</keyword> `
+		<attr>&lt;div&gt;
+			&lt;item-name-label&gt;Item:&lt;/item-name-label&gt;
+			&lt;item-name&gt; Item_</attr>${this.id}<attr>&lt;/item-name&gt;
+		&lt;/div&gt;</attr>
+		`;
+	}
+
+	<keyword>let</keyword> item = <keyword>new</keyword> <tag>CComponent</tag>(document.querySelector("<attr>.root</attr>"),item_html,"<attr>item</attr>");
+	
+	document.<tag>querySelector</tag>("<attr>.btn-add-item</attr>").<tag>addEventListener</tag>("<attr>click</attr>",<keyword>function</keyword>(event){
+		item.<tag>add()</tag>;		
+	})
+	item<tag>.add()</tag>;
+
+&lt;/<tag>script</tag>&gt;
+</pre>					
+				</code>
+			</div>
+			<h3>Output:</h3>
+			<img src="assets/output-002.png">
+		</div>
+
+		<!-- Example -->
+		<div>
+			<h3>Script to add item with delete button</h3>
+			<h4>Important:<span class="important underlined"> **Watch carefully the underlined code**</span></h4>
+			<div>
+				<code>
+<pre>
+&lt;<tag>div</tag> class="<attr>root</attr>"&gt;&lt;/<tag>div</tag>&gt;
+&lt;<tag>button</tag> class="<attr>btn-add-item</attr>"&gt;+ Add Item&lt;/<tag>button</tag>&gt;
+&lt;<tag>script</tag> type="<attr>text/javascript</attr>"&gt;
+
+	<comment>/* Component HTML */</comment>
+	<keyword>let</keyword> item_html = <keyword>function</keyword>(){
+ 		<keyword>return</keyword> `
+		<attr>&lt;div&gt;
+			&lt;item-name-label&gt;Item:&lt;/item-name-label&gt;
+			&lt;item-name&gt; Item_${this.id}&lt;/item-name&gt;
+		&lt;/div&gt;
+		&lt;button <span class="underlined">item-index=</span></attr><span class="underlined">${this.id}</span><attr> class="<span class="underlined">item-remove-btn</span>"&gt;- Delete&lt;/button&gt;</attr>
+		`;
+	}
+
+	<keyword>let</keyword> item = <keyword>new</keyword> <tag>CComponent</tag>(document.querySelector("<attr>.root</attr>"),item_html,"<attr>item</attr>");
+	
+	item.addEventListenerForThis = <keyword>function</keyword>(element){
+
+		<span class="underlined">this.</span><tag><span class="underlined">addRemoveBtn</span></tag>(element,"<attr><span class="underlined">item-remove-btn</span></attr>","<attr><span class="underlined">item-index</span></attr>");
+	}
+	
+	document.<tag>querySelector</tag>("<attr>.btn-add-item</attr>").<tag>addEventListener</tag>("<attr>click</attr>",<keyword>function</keyword>(event){
+		item.<tag>add()</tag>;		
+	})
+	item<tag>.add()</tag>;
+
+&lt;/<tag>script</tag>&gt;
+</pre>					
+				</code>
+			</div>
+			<h3><span>Note: </span><span class="note"><span class="note note-method underlined">this.addRemoveBtn</span> should be called within <span class="note note-method underlined">addEventListenerForThis()</span> method. &ensp;<span class="note note-method underlined">this.addRemoveBtn</span> has three parameters - element, remove button classname and property name that holds unique id.</span></h3>
+			<h3>Output:</h3>
+			<img src="assets/output-003.png">
+		</div>
+		</div>
+	</div>
+</body>
+</html>
